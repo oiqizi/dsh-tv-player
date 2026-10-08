@@ -29,20 +29,26 @@ DSH 电视插件 —— 在 DeepSeek Harness 里直播 **8 个确定稳定的频
 
 ## 安装
 
-### 方式一：npm 安装（已发布到 npm，最简单）
+### 方式一：编辑 profile（推荐，已发布到 npm）
 
-```sh
-npm install dsh-tv-player
-```
+1. 打开目标 profile 的 `package.json`（例如 `~/.dsh/profiles/<profile>/package.json`），把 `dsh-tv-player` 同时加到 `dependencies` 和 `dsh.profile.bundles`：
 
-然后在目标 profile 的 `package.json` 里，把依赖加到 `dependencies`，并**务必**在 `dsh.profile.bundles` 里加 `"dsh-tv-player"`：
+   ```json
+   {
+     "dependencies": { "dsh-tv-player": "^1.4.0" },
+     "dsh": { "profile": { "bundles": [ "...", "dsh-tv-player" ] } }
+   }
+   ```
 
-```json
-"dependencies": { "dsh-tv-player": "^1.4.0" },
-"dsh": { "profile": { "bundles": [ "...", "dsh-tv-player" ] } }
-```
+   > ⚠️ `dependencies` 和 `dsh.profile.bundles` **两个都要加**——漏了 `bundles` 插件不会被加载，界面/路由都不会出现。
 
-最后 `pnpm install`（或 `dsh plugin --profile <profile> add dsh-tv-player`）并重启 DSH。
+2. 在 profile 目录执行：
+
+   ```sh
+   pnpm install
+   ```
+
+3. 重启 DSH。
 
 ### 方式二：本地 tgz（自用 / 内部分发）
 
@@ -63,7 +69,7 @@ npm pack            # 产出 dsh-tv-player-<version>.tgz
    ```
 3. 安装并重启：
    ```sh
-   pnpm install        # 或 dsh plugin --profile <profile> add file:<tgz 路径>
+   pnpm install        # 在 profile 目录执行
    # 然后重启 DSH
    ```
 
@@ -138,7 +144,7 @@ Web（lib/client.js）
 
 ```sh
 npm pack            # 产出 dsh-tv-player-<version>.tgz
-dsh plugin --profile <profile> add file:<tgz 路径>   # 安装
+# 手动安装：编辑 profile 的 package.json（dependencies + dsh.profile.bundles），然后 pnpm install
 ```
 
 修改 `lib/` 后**升版本号**重新打包安装（pnpm 对同版本 file 依赖不重取）；仅客户端改动可刷新页面生效，Host 改动需重启 DSH。
@@ -146,9 +152,8 @@ dsh plugin --profile <profile> add file:<tgz 路径>   # 安装
 ## 回滚（卸载）
 
 ```sh
-# 1) 从 profile 移除依赖
-dsh plugin --profile <profile> remove dsh-tv-player
-# 2) 编辑 profile 的 package.json，从 dsh.profile.bundles 里删掉 "dsh-tv-player"
+# 1) 编辑 profile 的 package.json：从 dependencies 和 dsh.profile.bundles 里都删掉 "dsh-tv-player"
+# 2) 在 profile 目录执行 pnpm install
 # 3) 重启 DSH
 ```
 
