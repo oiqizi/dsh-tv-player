@@ -1,0 +1,51 @@
+{
+  "name": "dsh-tv-player",
+  "version": "1.4.0",
+  "description": "DSH 电视插件：在 DeepSeek Harness 里直播 8 个确定稳定的频道（CCTV-9 纪录、CCTV-12 社会与法与浙江/延边/香港/内蒙古/河北/东方卫视），支持临时频道搜索，白底播放条与全宽电视画面，Vibe coding 时的好伴侣。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "tv",
+    "live-tv",
+    "iptv",
+    "live",
+    "satellite",
+    "video"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/schemastery": "^3.18.4",
+    "react": "^18.2.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,8 @@
+# dsh-tv-player bundle patch: inserts the dual-face plugin row into the web
+# profile roster. The node half (exports ".") runs in the host process (live
+# stream channel catalog + same-origin HLS/segment proxy + the tv_play model
+# tool), and the dsh.client declaration in package.json loads the browser half
+# (exports "./client") in the web GUI.
+- insert:
+    - id: tv-player
+      name: 'dsh-tv-player'

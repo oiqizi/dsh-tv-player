@@ -1,0 +1,13 @@
+# 依赖与构建产物
+node_modules/
+*.tgz
+
+# 本地回滚备份（不提交到仓库）
+rollback/
+
+# 日志与临时文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
