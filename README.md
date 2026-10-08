@@ -73,6 +73,33 @@ npm pack            # 产出 dsh-tv-player-<version>.tgz
    # 然后重启 DSH
    ```
 
+### 方式三：从 GitHub 安装（git 依赖 / 源码）
+
+把 `dsh-tv-player` 的依赖写进 profile 的 `package.json`，二选一：
+
+```json
+// 3a. 直接拉 main 分支（最新源码）
+"dependencies": { "dsh-tv-player": "github:oiqizi/dsh-tv-player" }
+
+// 3b. 指定版本 tag（已发布版本）
+"dependencies": { "dsh-tv-player": "github:oiqizi/dsh-tv-player#v1.4.2" }
+```
+
+并同样在 `dsh.profile.bundles` 里加 `"dsh-tv-player"`，然后在 profile 目录执行：
+
+```sh
+pnpm install
+```
+
+或者 **clone 后本地打包**（离线/自用）：
+
+```sh
+git clone https://github.com/oiqizi/dsh-tv-player.git
+cd dsh-tv-player && npm pack   # 产出 dsh-tv-player-<version>.tgz
+```
+
+再把 tgz 按「方式二」的 `file:` 方式加到 profile。
+
 安装后重启 DSH，打开 Web GUI：聊天输入框上方会出现「DSH 电视」播放条。
 
 ## 使用
