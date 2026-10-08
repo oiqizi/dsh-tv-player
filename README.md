@@ -2,6 +2,12 @@
 
 > **非官方、社区维护项目**：本插件与 DeepSeek Harness 官方无任何关联，仅作为个人学习/自用工具提供。
 
+[![npm](https://img.shields.io/npm/v/dsh-tv-player)](https://www.npmjs.com/package/dsh-tv-player)
+[![GitHub](https://img.shields.io/github/stars/oiqizi/dsh-tv-player?style=social)](https://github.com/oiqizi/dsh-tv-player)
+
+- **npm**：https://www.npmjs.com/package/dsh-tv-player
+- **GitHub**：https://github.com/oiqizi/dsh-tv-player
+
 DSH 电视插件 —— 在 DeepSeek Harness 里直播 **8 个确定稳定的频道**（浙江 / 延边 / 香港 / 内蒙古 / 河北 / 东方卫视 + CCTV-9 纪录 / CCTV-12 社会与法），白底黑字的播放条与全宽电视画面，写代码时把电视放在聊天输入框上方，是 **Vibe coding 时的好伴侣**。
 
 参考 `dsh-music-player` 的双面结构：Host 端跑频道目录 + 同源直播流代理 + `tv_play` 模型工具，Web 端用 `<video>` + hls.js 播放。
@@ -23,7 +29,22 @@ DSH 电视插件 —— 在 DeepSeek Harness 里直播 **8 个确定稳定的频
 
 ## 安装
 
-### 方式一：本地 tgz（自用 / 内部分发）
+### 方式一：npm 安装（已发布到 npm，最简单）
+
+```sh
+npm install dsh-tv-player
+```
+
+然后在目标 profile 的 `package.json` 里，把依赖加到 `dependencies`，并**务必**在 `dsh.profile.bundles` 里加 `"dsh-tv-player"`：
+
+```json
+"dependencies": { "dsh-tv-player": "^1.4.0" },
+"dsh": { "profile": { "bundles": [ "...", "dsh-tv-player" ] } }
+```
+
+最后 `pnpm install`（或 `dsh plugin --profile <profile> add dsh-tv-player`）并重启 DSH。
+
+### 方式二：本地 tgz（自用 / 内部分发）
 
 ```sh
 # 1) 打包
@@ -45,12 +66,6 @@ npm pack            # 产出 dsh-tv-player-<version>.tgz
    pnpm install        # 或 dsh plugin --profile <profile> add file:<tgz 路径>
    # 然后重启 DSH
    ```
-
-### 方式二：发布到 npm 后
-
-```sh
-dsh plugin --profile <profile> add dsh-tv-player
-```
 
 安装后重启 DSH，打开 Web GUI：聊天输入框上方会出现「DSH 电视」播放条。
 
