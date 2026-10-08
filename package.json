@@ -1,6 +1,6 @@
 {
   "name": "dsh-tv-player",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "DSH 电视插件：在 DeepSeek Harness 里直播 8 个确定稳定的频道（CCTV-9 纪录、CCTV-12 社会与法与浙江/延边/香港/内蒙古/河北/东方卫视），支持临时频道搜索，白底播放条与全宽电视画面，Vibe coding 时的好伴侣。",
   "type": "module",
   "main": "./lib/index.js",
